@@ -1,37 +1,32 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-  entry: './src/index.js', // Entry point
-  output: {
-    filename: 'bundle.js', // Output file
-    path: path.resolve(__dirname, 'dist'), // Output directory
-  },
-  module: {
-    rules: [
+{
+  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings"],
+  "rules": {
+    "import/no-unresolved": "error",
+    "import/order": [
+      "error",
       {
-        test: /\.js$/, // Files to apply this loader
-        exclude: /node_modules/, // Exclude node_modules
-        use: {
-          loader: 'babel-loader', // Transpile JS using Babel
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
-      {
-        test: /\.css$/, // Files to apply this loader
-        use: ['style-loader', 'css-loader'], // Load and bundle CSS
-      },
-    ],
+        "groups": [["builtin", "external", "internal"]],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html', // Template for generating HTML file
-    }),
-  ],
-  devServer: {
-    contentBase: './dist', // Serve content from the output directory
-    hot: true, // Enable Hot Module Replacement
-  },
-};
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
