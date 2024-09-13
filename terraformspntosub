@@ -1,0 +1,21 @@
+provider "azurerm" {
+  features {}
+}
+
+# Define a single map containing both service principal object IDs and corresponding subscriptions
+locals {
+  sp_mapping = {
+    "alpha"     = { subscription_id = "alpha-1", object_id = "<alpha-service-principal-object-id>" }
+    "gold-dev"  = { subscription_id = "gold-dev-1", object_id = "<gold-dev-service-principal-object-id>" }
+    "gold-test" = { subscription_id = "gold-test-1", object_id = "<gold-test-service-principal-object-id>" }
+    "gold-prod" = { subscription_id = "gold-prod-1", object_id = "<gold-prod-service-principal-object-id>" }
+  }
+}
+
+# Loop through the combined map and assign the Contributor role
+resource "azurerm_role_assignment" "sp_role_assignment" {
+  for_each               = local.sp_mapping
+  scope                  = "/subscriptions/${each.value.subscription_id}"
+  role_definition_name   = "Contributor"  # Or "Reader" based on your need
+  principal_id           = each.value.object_id
+}
