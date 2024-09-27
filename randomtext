@@ -6,3 +6,24 @@ if (!isValidSubscriptionId) {
   // Handle invalid subscription ID, e.g., throw an error or redirect to a safe page
   console.error("Invalid subscription ID");
 }
+
+
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+
+function MyComponent() {
+  const { subscriptionId } = useParams();
+
+  // Validate subscription ID
+  const isValidSubscriptionId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(subscriptionId);
+
+  // Escape and sanitize the subscription ID
+  const safeSubscriptionId = isValidSubscriptionId ? DOMPurify.sanitize(subscriptionId) : 'Invalid Subscription ID';
+
+  return (
+    <div>
+      <p>Subscription ID: {safeSubscriptionId}</p>
+    </div>
+  );
+}
