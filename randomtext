@@ -1,7 +1,8 @@
-I’d like to inform you that the following steps have been successfully completed for setting up Resource Health Alerts and Service Health Alerts on the APIM:
+const subscriptionId = useParams().subscriptionId;
 
-The code implementation has been completed and pushed to the repository: [<repo-url>].
-JET SPNs have been created.
-The necessary changes to the pipeline-config.yml files have been made, and the files have been updated with the new Secret ID and certificate PFX, reflecting the changes in the Jules pipeline.
-Code has been written to assign the Owner and Contributor roles to the newly created SPNs, and this is available at [<repo-url>].
-Please let me know if you need further details or assistance.
+const isValidSubscriptionId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(subscriptionId);
+
+if (!isValidSubscriptionId) {
+  // Handle invalid subscription ID, e.g., throw an error or redirect to a safe page
+  console.error("Invalid subscription ID");
+}
