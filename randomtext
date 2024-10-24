@@ -1,23 +1,17 @@
-Here’s an enhanced version of the points you’ve worked on for self-evaluation:
+with smtplib.SMTP(smtp_host, smtp_port) as smtp:
+    smtp.ehlo()  # Identify ourselves to the SMTP server
+    smtp.starttls()  # Secure the connection
+    smtp.ehlo()  # Re-identify as the connection is now encrypted
+    smtp.login(username, password)
+    smtp.sendmail(from_addr, to_addrs, message)
 
-1. **Seal Migration of LLM Metrics and LLM Metrics App**  
-   Successfully executed the complete migration of LLM (Large Language Model) metrics and the LLM metrics application, ensuring data integrity and seamless transition with minimal downtime, enhancing overall performance and maintainability.
+with smtplib.SMTP(smtp_host, smtp_port) as smtp:
+    smtp.ehlo()  # Identify ourselves to the SMTP server
+    smtp.starttls()  # Secure the connection
+    smtp.ehlo()  # Re-identify as the connection is now encrypted
+    smtp.login(username, password)
+    smtp.sendmail(from_addr, to_addrs, message)
 
-2. **Development of LLM Metrics UI Application**  
-   Designed and developed an intuitive UI for the LLM Metrics application, utilizing modern frontend frameworks to provide real-time visibility into key metrics, improving user experience and operational efficiency.
-
-3. **Worked on Health Alerts for Multitenancy**  
-   Implemented and optimized health alert systems within a multitenancy environment, improving the monitoring and issue detection process, resulting in faster response times to critical system events.
-
-4. **LLM Support Rota Participation**  
-   Actively contributed to the LLM support rota, ensuring round-the-clock support coverage, troubleshooting issues, and providing expert guidance for LLM-related incidents, maintaining system reliability.
-
-5. **Bug Fixes for LLM Metrics UI**  
-   Identified, diagnosed, and resolved critical bugs in the LLM Metrics UI, improving application stability, user experience, and ensuring the smooth functioning of the platform.
-
-6. **Grafana Dashboard Development for Health Alert Implementation**  
-   Developed and fine-tuned Grafana dashboards to visualize health alerts and key performance indicators, enabling better decision-making through enhanced data insights and proactive system monitoring.
-
-These descriptions highlight your key contributions, focusing on the impact, technical skill, and improvements you made. Let me know if you'd like to further refine any of these points!
-
-Provided mentorship and guidance to team members, assisting them in overcoming technical obstacles. Proactively resolved issues when teammates were stuck, fostering a collaborative environment and enhancing overall team productivity.
+with smtplib.SMTP_SSL(smtp_host, smtp_port) as smtp:
+    smtp.login(username, password)
+    smtp.sendmail(from_addr, to_addrs, message)
